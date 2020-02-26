@@ -14,7 +14,9 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <!-- You are logged in! -->
+文章列表
+
                 </div>
             </div>
         </div>
