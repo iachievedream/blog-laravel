@@ -11,20 +11,20 @@
 |
 */
 
-
 // // test try routes
 // Route::get('/test',function(){
 // 	return 'Hello test!';
 // });
 
 // Route::get('/', function () {
-//     // return view('welcome');
-//     return view('home');
+//     return view('welcome');
+//     // return view('home');
 // });
 
+//vendor/laravel/framework/src/Illuminate/Routing/Router.php
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/','ArticleController@index');
-Route::get('/create','ArticleController@create');
+// Route::get('/create','ArticleController@create');
