@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Article;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -20,6 +22,18 @@ class ArticleController extends Controller
     public function create()
     {
     	return view('article.create');
+    }
+    public function store(Request $request)
+    {
+        // echo 1;exit();
+        // dd($request);
+
+        $Article=Article::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'author' => Auth::user(),
+        ]);
+        // dd($authe);
     }
 
 }
