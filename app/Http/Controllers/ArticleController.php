@@ -16,7 +16,8 @@ class ArticleController extends Controller
 
     public function index()
     {
-    	return view('article.index');
+        $article = Article::all();
+    	return view('article.index')->with('article',$article);
     }
 
     public function create()
@@ -25,15 +26,24 @@ class ArticleController extends Controller
     }
     public function store(Request $request)
     {
-        // echo 1;exit();
-        // dd($request);
+        //手冊的內容，有些奇怪
+        // $title=$request->input('title');
+        // dd($title);
 
-        $Article=Article::create([
+        // $user =Auth::user()->name;
+        // dd($user);
+
+        // $Auth=Auth::guard();
+        // dd($Auth);
+
+        $article = Article::create([
             'title' => $request->title,
             'content' => $request->content,
-            'author' => Auth::user(),
+            'author' => Auth::user()->name,
         ]);
-        // dd($authe);
+        // dd($article);
+        $article ->save();
+        return Redirect('/');
     }
 
 }

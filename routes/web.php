@@ -21,10 +21,11 @@
 //     // return view('home');
 // });
 
+// Route::get('/home', 'HomeController@index')->name('home');
+
 //vendor/laravel/framework/src/Illuminate/Routing/Router.php
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/','ArticleController@index');
 Route::get('/create','ArticleController@create');//->middleware('auth');添加需要先登入系統才能檢視

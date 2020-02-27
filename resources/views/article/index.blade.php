@@ -9,5 +9,11 @@
 	</form>
 @endguest
 
-<a href="create">新增文章</a>
-文章列表
+<a href="create">新增文章</a><br>
+文章列表<br>
+標題--作者<br>
+@foreach($article as $article)
+	{{$article->title}}
+<!-- 	{{$article->content}} -->
+	{{$article->author}}<br>
+@endforeach
