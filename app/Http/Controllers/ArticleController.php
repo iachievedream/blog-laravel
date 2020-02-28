@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Article;
+use app\index\controller\Articl;
 use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
@@ -33,9 +34,6 @@ class ArticleController extends Controller
         // $user =Auth::user()->name;
         // dd($user);
 
-        // $Auth=Auth::guard();
-        // dd($Auth);
-
         $article = Article::create([
             'title' => $request->title,
             'content' => $request->content,
@@ -44,6 +42,13 @@ class ArticleController extends Controller
         // dd($article);
         $article ->save();
         return Redirect('/');
+    }
+    public function show($id)
+    {
+        // return "show";
+        $article = Article::find($id);
+        // dd($article);
+        return view('article.show')->with('article',$article);
     }
 
 }
