@@ -1,7 +1,13 @@
 @guest
     使用身分：訪客
 @else
-    使用者：{{Auth::user()->name}}
+    使用者：{{Auth::user()->name}}<br>
+    <a href="edit/{{$article->id}}">編輯</a>
+    <form action="delete/{{$article->id}}" method="POST">
+        @csrf
+        @method('DELETE')
+        <button type="submin">刪除</button>
+    </form>
 @endguest
 
 <a href="/">上一頁</a><br>
