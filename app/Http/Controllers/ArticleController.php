@@ -25,30 +25,62 @@ class ArticleController extends Controller
     {
     	return view('article.create');
     }
+
     public function store(Request $request)
     {
-        //手冊的內容，有些奇怪
-        // $title=$request->input('title');
-        // dd($title);
+        $article = Article::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'author' => Auth::user()->name,
+        ]);
 
-        // $user =Auth::user()->name;
-        // dd($user);
+        // $title = $request->title;
+        // $content = $request ->content;
+
+        // $article = new Article();
+        // $article -> title = $title;
+        // $article -> content = $content;
+        // $article -> Auth::user()->name = $author;
+        $article -> save();
+        return Redirect('/');
+    }
+
+    public function show($id)
+    {
+        $article = Article::find($id);
+        return view('article.show')->with('article',$article);
+    }
+
+    public function edit($id)
+    {
+        $article=Article::find($id);
+        return view("article.edit")->with('article',$article);
+    }
+
+    public function update(Request $request,Article $article)
+    {
+        // return 'ABC';
+        // $title = $request ->title;
+        // $content = $request ->content;
+        // $article ->title = $title;
+        // $article ->content = $content;
 
         $article = Article::create([
             'title' => $request->title,
             'content' => $request->content,
             'author' => Auth::user()->name,
         ]);
-        // dd($article);
-        $article ->save();
-        return Redirect('/');
+        $article ->save();        
+        return redirect('/');
     }
-    public function show($id)
+
+    public function destroy($id)
     {
-        // return "show";
-        $article = Article::find($id);
+        // return "abc";
+        $article =Article::find($id);
         // dd($article);
-        return view('article.show')->with('article',$article);
+        $article->delete();
+        return redirect('/');
     }
 
 }
