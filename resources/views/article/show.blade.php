@@ -1,9 +1,7 @@
-@auth
-使用者：{{route::suer()->name}}
-@endauth
-
 @guest
-使用身分：訪客
+    使用身分：訪客
+@else
+    使用者：{{Auth::user()->name}}
 @endguest
 
 <a href="/">上一頁</a><br>
@@ -14,4 +12,3 @@
     {{$article->content}}---
     {{$article->author}}
 @endif
-
