@@ -12,19 +12,16 @@
 */
 
 // Route::get('/', function () {
-//     // return 'see you';
 //     return view('home');
 // });
-
-// Route::get('/home', 'HomeController@index')->name('home');
 
 //路徑:vendor/laravel/framework/src/Illuminate/Routing/Router.php
 Auth::routes();
 
-Route::get('/create','ArticleController@create')->middleware('auth');//添加後需要先登入系統才能檢視
+Route::get('/create','ArticleController@create')->middleware('auth')->name('create');//添加後需要先登入系統才能檢視
 Route::get('/','ArticleController@index');
 Route::post('/store','ArticleController@store');
-Route::get('/show/{id}','ArticleController@show');//->name('show');
+Route::get('/show/{id}','ArticleController@show');
 Route::get('show/edit/{id}/','ArticleController@edit');
 Route::put('show/edit/update/{id}','ArticleController@update');
 Route::delete('show/delete/{id}/','ArticleController@destroy');

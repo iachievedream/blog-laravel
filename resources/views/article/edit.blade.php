@@ -1,6 +1,4 @@
-@guest
-    訪客，無權編輯頁面。
-@else
+@if($article->author == Auth::user()->name)
 編輯文章
 <form action="update/{{$article->id}}" method="POST">
     @method('PUT')
@@ -9,4 +7,6 @@
     內容：<input typy="text" name="content" value="{{$article->content}}">
     <button type="submit">更新</button>
 </form>
-@endguest
+@else
+    非本篇作者，無權編輯頁面。
+@endif
