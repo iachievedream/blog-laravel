@@ -2,7 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use App\Providers\RouteServiceProvider;
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class Authorty
 {
@@ -13,11 +15,12 @@ class Authorty
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next,$guard=null)
     {
-        if($article->author == Auth::user()->name){
-            return redirect()
-        };
+        if(Auth::guard($guard)->check()){
+            // dd(Auth::guard($guard)->check());
+            return ("abc");
+        }
         return $next($request);
     }
 }
