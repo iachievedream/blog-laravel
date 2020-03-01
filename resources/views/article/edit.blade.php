@@ -13,7 +13,7 @@
 
 @error('title')
     {{massage}}
-@enderrot
+@enderror
 
 @error('content')
     {{massage}}

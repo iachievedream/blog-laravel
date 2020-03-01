@@ -22,6 +22,6 @@ Route::get('/create','ArticleController@create')->middleware('auth')->name('crea
 Route::get('/','ArticleController@index');
 Route::post('/store','ArticleController@store');
 Route::get('/show/{id}','ArticleController@show');
-Route::get('show/edit/{id}/','ArticleController@edit');
+Route::get('show/edit/{id}/','ArticleController@edit');//->middleware('authorty');
 Route::put('show/edit/update/{id}','ArticleController@update');
 Route::delete('show/delete/{id}/','ArticleController@destroy');
