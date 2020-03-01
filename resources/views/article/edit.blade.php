@@ -1,4 +1,12 @@
-@if($article->author == Auth::user()->name)
+@if(isset(Auth::user()->name))
+    @if($article->author == Auth::user()->name)
+        文章作者登入：{{Auth::user()->name}}<br>
+    @endif
+    使用者：{{Auth::user()->name}}<br>
+@else
+    訪客，無權編輯頁面。
+@endif
+
 編輯文章
 <form action="update/{{$article->id}}" method="POST">
     @method('PUT')
@@ -7,9 +15,6 @@
     內容：<input typy="text" name="content" value="{{$article->content}}">
     <button type="submit">更新</button>
 </form>
-@else
-    非本篇作者，無權編輯頁面。
-@endif
 
 @error('title')
     {{massage}}
