@@ -10,3 +10,11 @@
 @else
     非本篇作者，無權編輯頁面。
 @endif
+
+@error('title')
+    {{massage}}
+@enderrot
+
+@error('content')
+    {{massage}}
+@enderror

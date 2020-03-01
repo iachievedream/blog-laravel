@@ -3,5 +3,12 @@
 	@csrf
 	標題:<input type="text" name="title">
 	內容:<input type="text" name="content">
-	<button type="submit" value="新增">
+	<button type="submit"> 新增</button>
 </form>
+@error('title')
+	{{$message}}
+@enderror
+
+@error('content')
+	{{$message}}
+@enderror

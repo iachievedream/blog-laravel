@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Article;
 // use App\User;
@@ -23,6 +24,11 @@ class ArticleController extends Controller
 
     public function store(Request $request)
     {
+        //Illuminate\Foundation\Validation\Validator;
+        $request->validate([
+            'title'=>'required|max:25',
+            'content'=>'required|max:255',
+        ]);
         $article = Article::create([
             'title' => $request->title,
             'content' => $request->content,
@@ -46,6 +52,10 @@ class ArticleController extends Controller
 
     public function update(Request $request)
     {
+        $request->validate([
+            'title'=>'required|max:25',
+            'content'=>'required|max:255',
+        ]);
         $article = Article::create([
             'title' => $request->title,
             'content' => $request->content,
