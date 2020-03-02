@@ -1,7 +1,4 @@
 @if(isset(Auth::user()->name))
-    @if($article->author == Auth::user()->name)
-        文章作者登入：{{Auth::user()->name}}<br>
-    @endif
     使用者：{{Auth::user()->name}}<br>
 @else
     訪客，無權編輯頁面。
@@ -15,11 +12,3 @@
     內容：<input typy="text" name="content" value="{{$article->content}}">
     <button type="submit">更新</button>
 </form>
-
-@error('title')
-    {{massage}}
-@enderror
-
-@error('content')
-    {{massage}}
-@enderror

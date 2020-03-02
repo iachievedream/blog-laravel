@@ -18,10 +18,14 @@
 //路徑:vendor/laravel/framework/src/Illuminate/Routing/Router.php
 Auth::routes();
 
-Route::get('/create','ArticleController@create')->middleware('auth')->name('create');//添加後需要先登入系統才能檢視
 Route::get('/','ArticleController@index');
-Route::post('/store','ArticleController@store');
 Route::get('/show/{id}','ArticleController@show');
-Route::get('show/edit/{id}/','ArticleController@edit');//->middleware('authorty');
-Route::put('show/edit/update/{id}','ArticleController@update');
-Route::delete('show/delete/{id}/','ArticleController@destroy');
+Route::group(['middleware'=>'auth'],function(){
+	Route::get('/create','ArticleController@create')->name('create');
+	Route::post('/store','ArticleController@store');
+	Route::group(['middleware]'=>'authorty'],function(){
+		Route::get('show/edit/{id}/','ArticleController@edit')->middleware('authorty');
+		Route::put('show/edit/update/{id}','ArticleController@update')->middleware('authorty');
+		Route::delete('show/delete/{id}/','ArticleController@destroy')->middleware('authorty');
+	});
+});
