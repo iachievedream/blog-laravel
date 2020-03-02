@@ -1,7 +1,4 @@
 @if(isset(Auth::user()->name))
-    @if($article->author == Auth::user()->name)
-        使用者：{{Auth::user()->name}}<br>
-    @endif
     使用者：{{Auth::user()->name}}<br>
 @else
     進入身分：訪客<br>

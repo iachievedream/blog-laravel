@@ -12,8 +12,7 @@
 <a href="{{route('create')}}">新增文章</a><br>
 文章列表<br>
 標題--作者<br>
-@foreach($article as $article)
+@foreach($articles as $article)
 	<a href="show/{{$article->id}}">{{$article->title}}</a>---
-	<!-- {{$article->content}} -->
 	{{$article->author}}<br>
 @endforeach
