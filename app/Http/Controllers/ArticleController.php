@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Article;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class ArticleController extends Controller
 {
@@ -33,34 +34,34 @@ class ArticleController extends Controller
             'content' => $request->content,
             'author' => Auth::user()->name,
         ]);
-        $article->save();
         return Redirect('/');
     }
 
     public function show($id)
     {
         $article = Article::find($id);
-        return view('article.show')->with('article', $article);
+        return view('article.show')->with('articles', $article);
     }
 
     public function edit($id)
     {
         $article = Article::find($id);
-        return view("article.edit")->with('article', $article);
+        return view("article.edit")->with('articles', $article);
     }
 
-    public function update(Request $request)
+    public function update(Request $request,$id)
     {
         $request->validate([
             'title' => 'required|max:25',
             'content' => 'required|max:255',
         ]);
-        $article = Article::create([
-            'title' => $request->title,
-            'content' => $request->content,
-            'author' => Auth::user()->name,
-        ]);
-        $article->save();
+        $title = $request->title;
+        $content = $request->content;
+
+        DB::table('articles')
+            ->where('id',$id)
+            ->update(['title'=>$title,'content'=>$content]);
+
         return redirect('/');
     }
 

@@ -23,9 +23,9 @@ Route::get('/show/{id}','ArticleController@show');
 Route::group(['middleware'=>'auth'],function(){
 	Route::get('/create','ArticleController@create')->name('create');
 	Route::post('/store','ArticleController@store');
-	Route::group(['middleware]'=>'authorty'],function(){
-		Route::get('show/edit/{id}/','ArticleController@edit')->middleware('authorty');
-		Route::put('show/edit/update/{id}','ArticleController@update')->middleware('authorty');
-		Route::delete('show/delete/{id}/','ArticleController@destroy')->middleware('authorty');
+	Route::group(['middleware'=>'authorty'],function(){
+		Route::get('show/edit/{id}/','ArticleController@edit');
+		Route::put('show/edit/update/{id}','ArticleController@update');
+		Route::delete('show/delete/{id}/','ArticleController@destroy');
 	});
 });
