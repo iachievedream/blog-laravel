@@ -10,8 +10,6 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable;
-    const ROLE_ADMIN = 'admin';
-    const ROLE_USER = 'user';
 
     // protected $table = 'users';
 
@@ -21,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','role',
     ];
 
     /**

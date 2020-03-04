@@ -19,13 +19,23 @@
 Auth::routes();
 
 Route::get('/','ArticleController@index');
+
 Route::get('/show/{id}','ArticleController@show');
+
 Route::group(['middleware'=>'auth'],function(){
+
 	Route::get('/create','ArticleController@create')->name('create');
+
 	Route::post('/store','ArticleController@store');
-	Route::group(['middleware'=>'authorty'],function(){
+
+	Route::group(['middleware'=>'authority'],function(){
+
 		Route::get('show/edit/{id}/','ArticleController@edit');
+
 		Route::put('show/edit/update/{id}','ArticleController@update');
+
 		Route::delete('show/delete/{id}/','ArticleController@destroy');
+
 	});
+
 });
