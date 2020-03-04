@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use App\http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Article;
-use App\User;
+// use App\User;
 use Illuminate\Support\Facades\Auth;
-use DB;
 
 class ArticleController extends Controller
 {
@@ -29,7 +28,8 @@ class ArticleController extends Controller
             'title' => 'required|max:25',
             'content' => 'required|max:255',
         ]);
-        $article = Article::create([
+        
+        Article::create([
             'title' => $request->title,
             'content' => $request->content,
             'author' => Auth::user()->name,
@@ -55,13 +55,12 @@ class ArticleController extends Controller
             'title' => 'required|max:25',
             'content' => 'required|max:255',
         ]);
-        $title = $request->title;
-        $content = $request->content;
 
-        DB::table('articles')
-            ->where('id',$id)
-            ->update(['title'=>$title,'content'=>$content]);
-
+        Article::find($id)->update([
+            'title' => $request->title,
+            'content' => $request->content,
+            'author' =>Auth::user()->name,
+        ]);
         return redirect('/');
     }
 
