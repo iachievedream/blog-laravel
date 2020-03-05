@@ -59,7 +59,7 @@ class ArticleController extends Controller
         Article::find($id)->update([
             'title' => $request->title,
             'content' => $request->content,
-            'author' =>Auth::user()->name,
+            // 'author' =>Auth::user()->name,
         ]);
         return redirect('/');
     }
