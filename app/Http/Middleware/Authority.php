@@ -20,19 +20,17 @@ class Authority
     public function handle($request, Closure $next)
     {
         //網址回傳ID
-        $id =$request->route('id');
+        $id = $request->route('id');
         //文章作者
         $article = Article::find($id);
         $author = $article->author;
         //登入使用者
         $user = Auth::user()->name;
         //管理員判斷
-        $userid = Auth::user()->id;
-        $roles = User::find($userid);
-        $role = $roles->role;
-        if($author == $user || $role == "admin"){
+        $role = Auth::user()->role;
+        if ($author == $user || $role == "admin") {
             return $next($request);
         }
-        return redirect(RouteServiceProvider::HOME);
+        return redirect('/');
     }
 }

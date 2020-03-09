@@ -24,7 +24,7 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         //Illuminate\Foundation\Validation\Validator;
-        $request -> validate([
+        $request->validate([
             'title' => 'required|max:25',
             'content' => 'required|max:255',
         ]);
@@ -46,7 +46,7 @@ class ArticleController extends Controller
     public function edit($id)
     {
         $article = Article::find($id);
-        return view("article.edit")->with('articles', $article);
+        return view('article.edit')->with('articles', $article);
     }
 
     public function update(Request $request,$id)

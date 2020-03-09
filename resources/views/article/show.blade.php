@@ -4,10 +4,10 @@
     進入身分：訪客<br>
 @endif
 
-<a href="edit/{{$articles->id}}">編輯</a>
-<form action="delete/{{$articles->id}}" method="POST">
+<a href="/show/edit/{{$articles->id}}">編輯</a>
+
+<form action="/show/delete/{{$articles->id}}" method="POST">
     @csrf
-    @method('DELETE')
     <button type="submit">刪除</button>
 </form>
 <a href="/">上一頁</a><br>
