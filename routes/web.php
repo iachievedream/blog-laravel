@@ -24,17 +24,17 @@ Route::get('/show/{id}','ArticleController@show');
 
 Route::group(['middleware'=>'auth'],function(){
 
-	Route::get('/create','ArticleController@create')->name('create');
+	Route::get('/create','ArticleController@create');
 
 	Route::post('/store','ArticleController@store');
 
 	Route::group(['middleware'=>'authority'],function(){
 
-		Route::get('show/edit/{id}/','ArticleController@edit');
+		Route::get('/show/edit/{id}/','ArticleController@edit');
 
-		Route::put('show/edit/update/{id}','ArticleController@update');
+		Route::post('/show/edit/update/{id}','ArticleController@update');
 
-		Route::delete('show/delete/{id}/','ArticleController@destroy');
+		Route::post('/show/delete/{id}/','ArticleController@destroy');
 
 	});
 

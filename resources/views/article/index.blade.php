@@ -9,7 +9,7 @@
 	</form>
 @endguest
 
-<a href="{{route('create')}}">新增文章</a><br>
+<a href="/create">新增文章</a><br>
 文章列表<br>
 標題--作者<br>
 @foreach($articles as $article)
