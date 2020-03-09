@@ -2,22 +2,20 @@
 
 namespace App\Services;
 
-use App\Repositorie\articleRepository;
+use App\Repositorie\ArticleRepository;
+use Illuminate\Support\Facades\Validator;
 
-class ArticleService
+trait ArticleService
 {
-	// protected 
-	public function __construct(ArticleRepository $articleRepository)
-	{
-		$this->articleRepository $articleRepository;
-	}
+	// public function __construct(ArticleRepository $articleRepository)
+	// {
+	// 	$this->articleRepository $articleRepository;
+	// }
 	public function articleValidator(array $data)
 	{
-		return Validator::make($data,[
-			'title' => 'required|max:25',
-            'content' => 'required|max:255'
-		])
-
+		return validator::make($data, [
+			'title' => ['required','max:25'],
+            'content' => ['required','max:255']
+		]);
 	}
-
 }

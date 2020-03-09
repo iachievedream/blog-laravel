@@ -8,12 +8,13 @@ use Illuminate\Http\Request;
 // use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\ArticleRepository;
-use App\Services\articleService;
+use App\Services\ArticleService;
 
 class ArticleController extends Controller
 {
     protected $articleRepository;
-    protected $articleService;
+    // protected $articleService;
+    use ArticleService;
 
     public function __construct(ArticleRepository $articleRepository)
     {
@@ -22,7 +23,7 @@ class ArticleController extends Controller
 
     public function index()
     {
-        $article=$this->articleRepository->getIndex();
+        $article = $this->articleRepository->getIndex();
         return view('article.index')->with('articles', $article);
     }
 
@@ -34,7 +35,7 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         //Illuminate\Foundation\Validation\Validator;
-        $this->articleService->articleValidator($request->all())->validator();
+        $this->articleValidator($request->all())->validate();
         $this->articleRepository->getStore($request->all());
         return Redirect('/');
     }
@@ -53,10 +54,7 @@ class ArticleController extends Controller
 
     public function update(Request $request,$id)
     {
-        $request->validate([
-            'title' => 'required|max:25',
-            'content' => 'required|max:255',
-        ]);
+        $this->articleValidator($request->all())->validate();
         $this->articleRepository->getUpdate($request->all(), $id);
         return redirect('/');
     }

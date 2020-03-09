@@ -5,6 +5,7 @@ namespace App\Repositories;
 use Illuminate\Support\Facades\Auth;
 use App\Article;
 use Illuminate\Http\Request;
+
 class ArticleRepository
 {
 	// protected $article;
@@ -23,7 +24,7 @@ class ArticleRepository
 		return Article::create([
 				'title' => $data['title'],
 				'content' => $data['content'],
-				'author' =>Auth::user()->name,
+				'author' => Auth::user()->name,
 			]);
 	}
 
