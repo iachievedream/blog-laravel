@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ArticleRepository
 {
 	// protected $article;
-
+	
 	// public function __construct(Article $article)
 	// {
 	// }
