@@ -56,7 +56,6 @@ class ArticleController extends Controller
 
     public function update(Request $request, $id)
     {
-
         $article = Validator::make($request->all(), [
             'title' => 'required|max:25',
             'content' => 'required|max:255',
@@ -64,7 +63,6 @@ class ArticleController extends Controller
         if ($article->fails())
         {
             return redirect('/show/edit/'. "$id");
-
         }
         $this->articleService->updateService($request->all(), $id);
         return redirect('/');
