@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\http\Controllers\Controller;
 use Illuminate\Http\Request;
-// use App\Article;
-// use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use App\Services\ArticleService;
 
 class ArticleController extends Controller
@@ -31,16 +30,21 @@ class ArticleController extends Controller
 
     public function store(Request $request)
     {
-        $messsage = $this->articleService->storeService($request->all());
-        if ($messsage == false) {
-            return Redirect()->back();
+        $article = Validator::make($request->all(), [
+            'title' => 'required|max:25',
+            'content' => 'required|max:255',
+        ]);
+        if ($article->fails())
+        {
+            return redirect('/create');
         }
+        $this->articleService->storeService($request->all());
         return Redirect('/');
     }
 
     public function show($id)
     {
-        $article = $this->articleService->showservice($id);
+        $article = $this->articleService->showService($id);
         return view('article.show')->with('articles', $article);
     }
 
@@ -50,12 +54,19 @@ class ArticleController extends Controller
         return view('article.edit')->with('articles', $article);
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        $messsage = $this->articleService->updateService($request->all(),$id);
-        if ($messsage == false) {
-            return redirect()->back();
+
+        $article = Validator::make($request->all(), [
+            'title' => 'required|max:25',
+            'content' => 'required|max:255',
+        ]);
+        if ($article->fails())
+        {
+            return redirect('/show/edit/'. "$id");
+
         }
+        $this->articleService->updateService($request->all(), $id);
         return redirect('/');
     }
 
