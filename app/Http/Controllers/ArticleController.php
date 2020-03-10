@@ -7,23 +7,20 @@ use Illuminate\Http\Request;
 // use App\Article;
 // use App\User;
 use Illuminate\Support\Facades\Auth;
-use App\Repositories\ArticleRepository;
 use App\Services\ArticleService;
 
 class ArticleController extends Controller
 {
-    protected $articleRepository;
-    // protected $articleService;
-    use ArticleService;
+    protected $articleService;
 
-    public function __construct(ArticleRepository $articleRepository)
+    public function __construct(ArticleService $articleService)
     {
-        $this->articleRepository = $articleRepository;
+        $this->articleService = $articleService;
     }
 
     public function index()
     {
-        $article = $this->articleRepository->getIndex();
+        $article = $this->articleService->indexService();
         return view('article.index')->with('articles', $article);
     }
 
@@ -34,34 +31,33 @@ class ArticleController extends Controller
 
     public function store(Request $request)
     {
-        //Illuminate\Foundation\Validation\Validator;
-        $this->articleValidator($request->all())->validate();
-        $this->articleRepository->getStore($request->all());
+        $this->articleService->storeService($request->all());
         return Redirect('/');
     }
 
     public function show($id)
     {
-        $article = $this->articleRepository->getShow($id);
+        $article = $this->articleService->showservice($id);
         return view('article.show')->with('articles', $article);
     }
 
     public function edit($id)
     {
-        $article = $this->articleRepository->getEdit($id);
+        $article = $this->articleService->editService($id);
         return view('article.edit')->with('articles', $article);
     }
 
     public function update(Request $request,$id)
     {
-        $this->articleValidator($request->all())->validate();
-        $this->articleRepository->getUpdate($request->all(), $id);
+        $this->articleService->updateService($request->all(),$id);
         return redirect('/');
     }
 
     public function destroy($id)
     {
-        $this->articleRepository->getDestroy($id);
+        $this->articleService->deleteService($id);
         return redirect('/');
     }
+
+
 }
