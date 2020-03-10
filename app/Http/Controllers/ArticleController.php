@@ -31,7 +31,10 @@ class ArticleController extends Controller
 
     public function store(Request $request)
     {
-        $this->articleService->storeService($request->all());
+        $messsage = $this->articleService->storeService($request->all());
+        if ($messsage == false) {
+            return Redirect()->back();
+        }
         return Redirect('/');
     }
 
@@ -49,7 +52,10 @@ class ArticleController extends Controller
 
     public function update(Request $request,$id)
     {
-        $this->articleService->updateService($request->all(),$id);
+        $messsage = $this->articleService->updateService($request->all(),$id);
+        if ($messsage == false) {
+            return redirect()->back();
+        }
         return redirect('/');
     }
 
@@ -58,6 +64,4 @@ class ArticleController extends Controller
         $this->articleService->deleteService($id);
         return redirect('/');
     }
-
-
 }
