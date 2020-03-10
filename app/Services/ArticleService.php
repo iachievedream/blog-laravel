@@ -28,12 +28,13 @@ class ArticleService
 		]);
 		if ($article->fails())
 		{
-			return redirect('/');
+			return false;
 		}
 		return $this->articleRepository->getStore($data);
 	}
 
-	public function showService($id){
+	public function showService($id)
+	{
 		return $this->articleRepository->getShow($id);
 	}
 
@@ -50,7 +51,7 @@ class ArticleService
 		]);
 		if ($article->fails())
 		{
-			return redirect('/');
+			return false;
 		}
 		return $this->articleRepository->getUpdate($data,$id);
 	}

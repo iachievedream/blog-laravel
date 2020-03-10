@@ -8,12 +8,6 @@ use Illuminate\Http\Request;
 
 class ArticleRepository
 {
-	// protected $article;
-	
-	// public function __construct(Article $article)
-	// {
-	// }
-
 	public function getIndex()
 	{
 		return Article::all();
@@ -22,10 +16,10 @@ class ArticleRepository
 	public function getStore(array $data)
 	{
 		return Article::create([
-				'title' => $data['title'],
-				'content' => $data['content'],
-				'author' => Auth::user()->name,
-			]);
+			'title' => $data['title'],
+			'content' => $data['content'],
+			'author' => Auth::user()->name,
+		]);
 	}
 
 	public function getShow($id)
@@ -50,5 +44,4 @@ class ArticleRepository
 	{
 		return Article::find($id)->delete();
 	}
-
 }
