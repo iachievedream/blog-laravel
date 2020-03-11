@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\http\Controllers\Controller;
 use Illuminate\Http\Request;
-// use App\Article;
+use App\Article;
 // use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Services\ArticleService;
@@ -31,8 +31,8 @@ class ArticleController extends Controller
 
     public function store(Request $request)
     {
-        $messsage = $this->articleService->storeService($request->all());
-        if ($messsage == false) {
+        $message = $this->articleService->storeService($request->all());
+        if ($message == false) {
             return Redirect()->back();
         }
         return Redirect('/');
@@ -52,8 +52,8 @@ class ArticleController extends Controller
 
     public function update(Request $request,$id)
     {
-        $messsage = $this->articleService->updateService($request->all(),$id);
-        if ($messsage == false) {
+        $message = $this->articleService->updateService($request->all(),$id);
+        if ($message == false) {
             return redirect()->back();
         }
         return redirect('/');
@@ -64,4 +64,14 @@ class ArticleController extends Controller
         $this->articleService->deleteService($id);
         return redirect('/');
     }
+    
+    // public function test(Request $request)
+    // {
+    //     // return "Me is here";
+    //     $article = new Article();
+    //     $article->title = $request->'title';
+    //     $article->content = $request->'content';
+    //     $$article->save();
+
+    // }
 }
