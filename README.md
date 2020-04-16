@@ -14,5 +14,4 @@ php artisan serve
 
 文件介紹
 
-![image](https://github.com/iachievedream/demo_code/blob/master/picture/Laravel/laravel_process.png)
-
+<img src="https://github.com/iachievedream/demo_code/blob/master/picture/Laravel/laravel_process.png" width="50%" height="50%" />
