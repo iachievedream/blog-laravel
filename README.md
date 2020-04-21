@@ -9,6 +9,7 @@ copy .env.example .env
 **set up MySQL of root and password
 php artisan key:generate
 php artisan migrate:refresh
+php artisan db:seed
 php artisan serve
 ~~~
 
