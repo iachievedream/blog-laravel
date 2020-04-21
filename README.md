@@ -163,8 +163,8 @@ Q&A:<br>
 php artisan db:seed
 ~~~
 
+建立root管理員：[實際程式碼](https://github.com/iachievedream/blog-laravel/blob/master/database/seeds/DatabaseSeeder.php)。
 ## 進階factory
-
 database/factories/UserFactory.php
 ~~~
 $factory->define(User::class, function (Faker $faker) {
@@ -181,10 +181,14 @@ DatabaseSeeder
     public function run()
     {
         factory(App\User::class,10)->create();    
-        //前面有$user則無法新增資料
     }
 ~~~
-
+建立多個資訊內容：[實際程式碼](https://github.com/iachievedream/blog-laravel/blob/master/database/factories/UserFactory.php)。<br>
+需取消20行的註解，前方14~19也需做註解處理，<br>
+DatabaseSeeder的程式需使用此行程式內容，新增十個資料內容。
+~~~
+factory(App\User::class,10)->create();    
+~~~
 ## 修改routes/web.php
 新增下方程式
 ~~~
